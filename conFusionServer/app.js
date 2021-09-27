@@ -12,6 +12,9 @@ var config = require('./config');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dishRouter = require('./routes/dishRouter');
+var uploadRouter = require('./routes/uploadRouter');
+
+
 
 const mongoose = require('mongoose')
 const dishes = require('./models/dishes');
@@ -41,10 +44,12 @@ app.use(passport.initialize());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Authorize
-app.use('/dishes',  dishRouter)
+app.use('/dishes',  dishRouter);
+app.use('/imageUpload', uploadRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
